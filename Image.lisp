@@ -69,8 +69,10 @@
 		(setf width  (image-width  image))
 		(setf height (image-height image))
 
+		
 		(with-open-file (file file-name :direction :output
-				      :if-exists :overwrite)
+				      :if-exists :overwrite
+				      :if-does-not-exist :create)
 			(format file "P3~%~D ~D~%255~%" width height)
 			(let ((y (1- height)) color)
 				(loop 
