@@ -1,3 +1,4 @@
+
 (defun set-vector (a x y z)
 	(setf (aref a 0) x)
 	(setf (aref a 1) y)
@@ -20,6 +21,7 @@
 	(let ((result 0))
 		(dotimes (i (length a) result)
 			(setf result (+ result (aref a i))))))
+
 
 (defun v-dot (a b)
 	(v-sum (map 'vector #'* a b)))
