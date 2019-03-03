@@ -21,7 +21,7 @@
 ; 		(make-instance 'color 
 ; 		               :color (make-array '(3) :element-type '(simple-base-string)  :initial-contents color))))
 
-(defmethod print-color ((pixel Color) destination)
+(defmethod print-color ((pixel Color) &optional (destination t))
 	 (map 'vector #'(lambda (x) (format destination "~D " x)) (color-array pixel))
 	 (format destination "~%"))
 
@@ -58,8 +58,7 @@
 ; 	(defvar (aref (image-array image) (+ (* y (image-width image)) x)) color))
 
 (defmethod set-image-color ((image Image) x y (color Color))
-	;(defvar color (make-instance 'Color :color color))
-	(setf (aref (image-array image) (+ (* y (image-width image)) x)) color))
+  (setf (aref (image-array image) (+ (* y (image-width image)) x)) color))
 
 
 
@@ -70,7 +69,8 @@
 		(setf height (image-height image))
 
 		
-		(with-open-file (file file-name :direction :output
+		(with-open-file (file file-name
+				      :direction :output
 				      :if-exists :overwrite
 				      :if-does-not-exist :create)
 			(format file "P3~%~D ~D~%255~%" width height)
