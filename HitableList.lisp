@@ -1,4 +1,4 @@
-(load "Hitable.lisp")
+(load "Hitable.fasl")
 
 (defclass HitableList (Hitable)
   ((list-size
@@ -10,31 +10,22 @@
     ;:type 'Hitable
     )))
 
-(defmethod hit ((obj Hitablelist)
-		(ray Ray)
+(defmethod hit ((ray Ray)
+		(obj Hitablelist)
 		(rec Hitrecord)
 		t_min
 		t_max)
-  (let (temp_rec
+
+  (let ((temp_rec (make-instance 'HitRecord))
 	(hit_anything nil)
 	(closet_so_far t_max))
 
-    ;Here Write
-    (loop for i from 0 to (hitable-list-list-size obj)
-	 (if (hit (hitable-list-list obj) ray t_min closet_so_far temp_rec)
+    
+    (loop for i from 0 to (- (hitable-list-list-size obj) 1) do
+	 (if (hit ray (elt (hitable-list-list obj) i)  temp_rec t_min closet_so_far)
 	     (progn
-	       (setf hit_anything t)
-	       (setf closet_so_far temp_rec)
-	       (setf rec temp_rec))))
-
+	       (setf closet_so_far (hit-recode-trace temp_rec))
+	       (setf rec temp_rec)
+	       (setf hit_anything t))))
     hit_anything))
-
-
-
-
-
-
-
-
-
 

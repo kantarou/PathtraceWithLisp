@@ -4,14 +4,14 @@
     "Ray.lisp"
     "Image.lisp"
     "Hitable.lisp"
+    "HitableList.lisp"
     "Sphere.lisp"
-    "main.lisp"
-    ))
+    "main.lisp"))
 
-;;(mapcar #'compile-file compile-files)
 
 
 ;; compile to exe file
+(mapcar #'compile-file compile-files)
 (mapcar #'load compile-files)
 (sb-ext:save-lisp-and-die "pathtrace-lisp"
                           :toplevel #'main
