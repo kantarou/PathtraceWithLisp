@@ -1,0 +1,4 @@
+*.fasl
+*.ppm
+*.lisp~
+pathtrace-lisp
