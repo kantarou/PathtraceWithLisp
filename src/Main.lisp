@@ -1,8 +1,8 @@
-(load "Image.fasl")
-(load "Vector3D.fasl")
-(load "Ray.fasl")
-(load "Sphere.fasl")
-(load "HitableList.fasl")
+(load "src/Image.fasl")
+(load "src/Vector3D.fasl")
+(load "src/Ray.fasl")
+(load "src/Sphere.fasl")
+(load "src/HitableList.fasl")
 
 (defun main ()
   (let (sky lower-left-corner horizontal vertical origin list world)

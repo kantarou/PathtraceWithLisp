@@ -1,4 +1,4 @@
-(load "Hitable.fasl")
+(load "src/Hitable.fasl")
 
 (defclass HitableList (Hitable)
   ((list-size

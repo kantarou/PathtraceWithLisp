@@ -1,4 +1,4 @@
-(load "Ray.fasl")
+(load "src/Ray.fasl")
 
 (defclass HitRecord ()
   ((trace

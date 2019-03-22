@@ -1,4 +1,4 @@
-(load "Hitable.fasl")
+(load "src/Hitable.fasl")
 
 (defclass Sphere (Hitable)
   ((center :accessor sphere-center

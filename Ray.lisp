@@ -32,6 +32,7 @@
 	-1.0
 	(/ (- (- b) (sqrt discriminant)) (* 2.0 a)))))
 
+#|
 (defmethod transform-ray-to-color ((r Ray))
   
   (let ((temp (hit-sphere #(0 0 -1) 0.5 r)) N)
@@ -48,3 +49,4 @@
 	  (setf result
 		(v+ (v* (- 1.0 temp) #(1.0 1.0 1.0)) (v* temp #(0.5 0.7 1.0))))
 	  (make-instance 'color :color result)))))
+|#

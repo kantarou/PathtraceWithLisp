@@ -1,4 +1,4 @@
-(load "Vector3D.fasl")
+(load "src/Vector3D.fasl")
 
 (defclass Color ()
 	((color :accessor color-array
