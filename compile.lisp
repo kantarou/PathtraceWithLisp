@@ -6,7 +6,7 @@
     "Hitable.lisp"
     "HitableList.lisp"
     "Sphere.lisp"
-    "main.lisp"))
+    "Main.lisp"))
 
 
 
