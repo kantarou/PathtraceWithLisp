@@ -15,5 +15,9 @@
 
 (defclass Hitable () ())
 
-(defmethod hit ( (ray Ray) (obj Hitable) (rec HitRecord) t_min t_max ))
+;(defmethod hit ( (ray Ray)
+;		(obj Hitable)
+;		(rec HitRecord)
+;		t_min
+;		t_max ))
 
