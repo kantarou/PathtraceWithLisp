@@ -25,21 +25,21 @@
   
 
 (defun main ()
-  (let (sky lower-left-corner horizontal vertical origin list world)
-    (setf sky (make-instance-image 200 100))
-    (setf lower-left-corner #(-2.0 -1.0 -1.0))
-    (setf horizontal #(4.0 0.0 0.0))
-    (setf vertical   #(0.0 2.0 0.0))
-    (setf origin     #(0.0 0.0 0.0))
-    (setf list `(,(make-instance 'Sphere :center #(0 0 -1) :radius 0.5)
-		 ,(make-instance 'Sphere :center #(0 -100.5 -1) :radius 100)))
-    (setf world (make-instance 'HitableList :list-size 2 :list list))
+  (let ((sky (make-instance-image 200 100))
+	(lower-left-corner  #(-2.0 -1.0 -1.0))
+	(horizontal #(4.0 0.0 0.0))
+	(vertical  #(0.0 2.0 0.0))
+	(origin  #(0.0 0.0 0.0))
+	(list  `(,(make-instance 'Sphere :center #(0 0 -1) :radius 0.5)
+		  ,(make-instance 'Sphere :center #(0 -100.5 -1) :radius 100)))
+	(world (make-instance 'HitableList :list-size 2 :list list))
+	(camera (make-instance 'Camera)))
     
     
-    (let ((width (image-width sky)) (height (image-height sky)))
+    (let ((width (image-width sky))
+	  (height (image-height sky)))
       (dotimes (y height)
 	(dotimes (x width)
-	  
 	  (let* ((u (/ x width))
 		 (v (/ y height))
 		 
