@@ -13,7 +13,7 @@
 (defmethod get-ray ((camera Camera) u v)
   (make-instance 'Ray
 		 :origine (camera-origin camera)
-		 :direction (v- (v+ (camera-lower-left-corner camera)
-				  (v* u (camera-horizontal camera))
-				  (v* v (camera-vertical camera)))
-			       (camera-origin camera)))
+		 :direction (v- (v+ (v+ (camera-lower-left-corner camera)
+					(v* u (camera-horizontal camera)))
+				    (v* v (camera-vertical camera)))
+				(camera-origin camera))))
