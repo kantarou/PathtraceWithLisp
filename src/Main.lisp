@@ -7,21 +7,34 @@
 (load "src/Camera.fasl")
 
 
+(defun join-strings (s char v)
+  (loop :with last := (1- (length v))
+        :for i :from 0 :to last
+        :do (princ (aref v i) s)
+        :unless (= i last) :do (princ char s)))
+
+(defun join/comma (s arg)
+  (join-strings s #\, arg))
+
+
 (defmethod get-color ((ray Ray)
 		      (world HitableList))
 
   (let ((rec (make-instance 'HitRecord)))
-    (if (hit ray world rec 0.0 sb-ext:double-float-positive-infinity)
-	(v* 0.5
-	   (v+ (hit-recode-normal rec) #(1 1 1)))
-	(progn
-	  (let* ((unit-direction (v-unit (ray-direction ray)))
-		(temp (* 0.5
-			 (+ (aref unit-direction 1) 1))))
-	    (v+ (v* (- 1 temp)
-		  #(1 1 1))
-	       (v* temp
-		   #(0.5 0.7 1.0))))))))
+    (multiple-value-bind (hit-result rec)
+	(hit ray world rec 0.0 sb-ext:double-float-positive-infinity)
+      (if hit-result
+	  (progn
+	    (v* 0.5
+		(v+ (hit-recode-normal rec) #(1 1 1))))
+	  (progn
+	    (let* ((unit-direction (v-unit (ray-direction ray)))
+		   (temp (* 0.5
+			    (+ (aref unit-direction 1) 1))))
+	      (v+ (v* (- 1 temp)
+		      #(1 1 1))
+		  (v* temp
+		      #(0.5 0.7 1.0)))))))))
 
   
 

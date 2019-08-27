@@ -30,7 +30,7 @@
 		(setf (hit-recode-normal rec)
 		      (v* (/ 1 (sphere-radius obj))
 		       (v- (hit-recode-point rec) (sphere-center obj))))
-		t)
+		(values t rec))
 
 	      (progn
 		(setf temp (/ (+ (* -1 b) (realpart (sqrt discriment))) a))
@@ -44,6 +44,6 @@
 		      (setf (hit-recode-normal rec)
 			    (v* (/ 1 (sphere-radius obj))
 				(v- (hit-recode-point rec) (sphere-center obj))))		
-		      t)))))
-	nil)))
+		      (values t rec))))))
+	(values nil rec))))
 
