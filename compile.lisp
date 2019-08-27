@@ -6,6 +6,7 @@
     "Hitable.lisp"
     "HitableList.lisp"
     "Sphere.lisp"
+    "Camera.lisp"
     "Main.lisp"))
 
 

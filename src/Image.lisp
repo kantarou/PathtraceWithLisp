@@ -4,7 +4,7 @@
 	((color :accessor color-array
 		:initarg  :color
 		:initform (make-array 3 :element-type 'fixnum
-				      :initial-contents '(0 0 0)))))
+				        :initial-contents '(0 0 0)))))
 
 
 ;;(coerce '(a b c) 'vector) => #(a b c)
