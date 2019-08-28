@@ -7,16 +7,34 @@
 (load "src/Camera.fasl")
 
 
+(defun random-in-unit-sphere ()
+  (let ((p #(0 0 0)))
+    (do ()
+	((>= (v-dot p p) 1.0) p)
+      (setf p (v- (v* 2
+		      (vector (random 1.0) (random 1.0) (random 1.0)))
+		  #(1 1 1))))))
+
+
+
 (defmethod get-color ((ray Ray)
 		      (world HitableList))
 
-  (let ((rec (make-instance 'HitRecord)))
+  (let ((rec (make-instance 'HitRecord))
+	(target))
     (multiple-value-bind (hit-result rec)
 	(hit ray world rec 0.0 sb-ext:double-float-positive-infinity)
       (if hit-result
 	  (progn
+	    (setf target (v+ (v+ (hit-recode-point rec)
+				 (hit-recode-normal rec))
+			     (random-in-unit-sphere)))
 	    (v* 0.5
-		(v+ (hit-recode-normal rec) #(1 1 1))))
+		(get-color (make-instance 'Ray
+					  :origine (hit-recode-point rec)
+					  :direction (v- target (hit-recode-point rec)))
+			   world)))
+		;(v+ (hit-recode-normal rec) #(1 1 1))))
 	  (progn
 	    (let* ((unit-direction (v-unit (ray-direction ray)))
 		   (temp (* 0.5
@@ -30,8 +48,8 @@
 
 (defun main ()
   (let* ((sky (make-instance-image 200 100))
-	 (ns 100)
-	 (origin  #(0.0 0.0 0.0))
+	 (ns 50)
+	 ;(origin  #(0.0 0.0 0.0))
 	 (list  `(,(make-instance 'Sphere :center #(0 0 -1) :radius 0.5)
 		   ,(make-instance 'Sphere :center #(0 -100.5 -1) :radius 100)))
 	 (world (make-instance 'HitableList :list-size 2 :list list))
@@ -50,8 +68,8 @@
 			   width))
 		     (v (/ (+ y (random 1.0))
 			   height))
-		     (r (get-ray camera u v))
-		     (p (point-at-parameter 2.0 r)))
+		     (r (get-ray camera u v)))
+		     ;(p (point-at-parameter 2.0 r)))
 
 		;; add some color for antialias
 		(setf (color-array col)
@@ -62,7 +80,7 @@
 	    (setf (color-array col)
 		  (v* (/ 1 ns) (color-array col)))
 	    (setf (color-array col)
-		  (map 'vector #'(lambda (x) (floor (* x 255.99))) (color-array col)))
+		  (map 'vector #'(lambda (x) (floor (* (sqrt x) 255.99))) (color-array col)))
 	    (set-image-color sky x y col)))))
       
     (save-image-ppm "sky" sky)))
