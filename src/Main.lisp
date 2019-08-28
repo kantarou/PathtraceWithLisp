@@ -7,16 +7,6 @@
 (load "src/Camera.fasl")
 
 
-(defun join-strings (s char v)
-  (loop :with last := (1- (length v))
-        :for i :from 0 :to last
-        :do (princ (aref v i) s)
-        :unless (= i last) :do (princ char s)))
-
-(defun join/comma (s arg)
-  (join-strings s #\, arg))
-
-
 (defmethod get-color ((ray Ray)
 		      (world HitableList))
 
@@ -41,9 +31,6 @@
 (defun main ()
   (let* ((sky (make-instance-image 200 100))
 	 (ns 100)
-	 ;(lower-left-corner  #(-2.0 -1.0 -1.0))
-	 ;(horizontal #(4.0 0.0 0.0))
-	 ;(vertical  #(0.0 2.0 0.0))
 	 (origin  #(0.0 0.0 0.0))
 	 (list  `(,(make-instance 'Sphere :center #(0 0 -1) :radius 0.5)
 		   ,(make-instance 'Sphere :center #(0 -100.5 -1) :radius 100)))
