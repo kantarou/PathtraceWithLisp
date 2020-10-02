@@ -30,6 +30,7 @@
 					(setf (hit-recode-normal rec)
 						(v* (/ 1 (sphere-radius obj))
 						(v- (hit-recode-point rec) (sphere-center obj))))
+					(setf (hit-recode-material-pointer rec) (hit-material-pointer obj))
 					(values t rec))
 
 				(progn

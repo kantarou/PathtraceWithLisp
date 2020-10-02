@@ -5,6 +5,8 @@
     "Image.lisp"
     "Hitable.lisp"
     "HitableList.lisp"
+    "Material.lisp"
+    "Lambertian.lisp"
     "Sphere.lisp"
     "Camera.lisp"
     "Main.lisp"))
