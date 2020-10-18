@@ -11,10 +11,9 @@
 (defun random-in-unit-sphere ()
   (let ((p #(0 0 0)))
     (while (progn
-	     (setf p (v- (vector (random 1.0) (random 1.0) (random 1.0))
-		;; (setf p (v- #(0.5 0.5 0.5)
+	     (setf p (v- (v* 2 (vector (random 1.0) (random 1.0) (random 1.0)))
 			         #(1 1 1)))
-	     (>= (v-norm p) 1.0)))
+	     (>= (* (v-norm p) (v-norm p)) 1.0)))
     p))
 
 (defun refrect (vec normal)

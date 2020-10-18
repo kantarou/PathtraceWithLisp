@@ -11,7 +11,7 @@
     "Camera.lisp"
     "Main.lisp"))
 
-
+(declaim (optimize (speed 3) (debug 0) (safety 0)))
 
 ;; compile to exe file
 (setf compile-files

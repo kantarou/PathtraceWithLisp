@@ -1,4 +1,4 @@
-(load "src/Ray.fasl")
+;; (load "src/Ray.fasl")
 
 (defclass HitRecord ()
   ((trace
@@ -12,16 +12,11 @@
     :initform #(0 0 0))
    (material-pointer
     :initarg :material
-    :accessor hit-recode-material-pointer)))
+    :accessor hit-recode-material-pointer
+    :initform (make-instance 'Lambertian :albedo #(0.8 0.3 0.3)))))
 
 (defclass Hitable () 
   ((material-pointer
     :initarg :material
     :accessor hit-material-pointer)))
-
-;(defmethod hit ( (ray Ray)
-;		(obj Hitable)
-;		(rec HitRecord)
-;		t_min
-;		t_max ))
 
