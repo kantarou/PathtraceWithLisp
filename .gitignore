@@ -1,4 +1,5 @@
 *.fasl
 *.ppm
 *.lisp~
+*.DS_Store
 pathtrace-lisp

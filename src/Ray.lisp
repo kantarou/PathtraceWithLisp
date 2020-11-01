@@ -3,12 +3,12 @@
 
 
 (defclass Ray ()
-  ((A		:accessor ray-origin
+  ((A	:accessor ray-origin
 		:initarg  :origine
 		:initform (make-array '(3) :initial-contents '(0 0 0)))
-   (B     :accessor ray-direction
-	  :initarg  :direction
-	  :initform (make-array '(3) :initial-contents '(0 0 0)))))
+   (B   :accessor ray-direction
+	  	:initarg  :direction
+	  	:initform (make-array '(3) :initial-contents '(0 0 0)))))
 
 #|
 (defun make-instance-ray (e1 e2)
