@@ -18,7 +18,7 @@
       (if hit-result
 		(let ((scattered (make-instance 'Ray))
 			  (attenuation #(0 0 0)))
-			(if (and (< depth 50)
+			(if (and (< depth 25)
 				(scatter (hit-recode-material-pointer rec) ray rec attenuation scattered))
 
 					(map 'vector #'* attenuation (get-color scattered world (+ depth 1)))				
@@ -36,10 +36,10 @@
 
 (defun main ()
   (let* ((sky (make-instance-image 200 100))
-	 (ns 500)
+	 (ns 200)
 	 (origin  #(0.0 0.0 0.0))
 	 (list  `(,(make-instance 'Sphere :center #(0 0 -1) :radius 0.5 :material (make-instance 'Lambertian :albedo #(0.8 0.3 0.3)))
-		   	  ,(make-instance 'Sphere :center #(0 -100.5 -1) :radius 100 :material (make-instance 'Lambertian :albedo #(0.8 0.8 0.0)))
+		   	  ,(make-instance 'Sphere :center #(0 -100.55 -1) :radius 100 :material (make-instance 'Lambertian :albedo #(0.1 0.5 0.0)))
 			  ,(make-instance 'Sphere :center #(1 0 -1) :radius 0.5 :material (make-instance 'Metal :albedo #(0.8 0.6 0.2)))
 		      ,(make-instance 'Sphere :center #(-1 0 -1) :radius 0.5 :material (make-instance 'Metal :albedo #(0.8 0.8 0.8)))))
 	 (world (make-instance 'HitableList :list-size 4 :list list))
@@ -63,7 +63,7 @@
 							(p (point-at-parameter 2.0 r)))
 							;; add some color for antialias
 							(setf (color-array col)
-								(v+ (color-array col)
+								(v+ (color-array col) 
 									(get-color r world 0)))))
 					
 					;;transform color value to RGB
