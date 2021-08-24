@@ -4,7 +4,7 @@
 	((color :accessor color-array
 		:initarg  :color
 		:initform (make-array 3 :element-type 'fixnum
-				        :initial-contents '(0 0 0)))))
+				                :initial-contents '(0 0 0)))))
 
 
 
@@ -31,12 +31,14 @@
 
 (defun make-instance-image (width height)
 	(let ((image (make-instance 'image :width width :height height)))
-	  (setf (image-array image) (make-array (* width height)  :initial-element (make-instance 'color)))
+	  (setf (image-array image) 
+	  		(make-array (* width height)  :initial-element (make-instance 'color)))
 	  image))
 
 
 (defmethod get-image-color ((image Image) x y)
-	(aref (image-array image) (+ (* y (image-width image)) x)))
+	(aref (image-array image) 
+			(+ (* y (image-width image)) x)))
 
 
 (defmethod set-image-color ((image Image) x y (color Color))
@@ -55,9 +57,11 @@
 				      :if-exists :overwrite
 				      :if-does-not-exist :create)
 			(format file "P3~%~D ~D~%255~%" width height)
-			(let ((y (1- height)) color)
+			(let ((y (1- height)) 
+				  color)
 				(loop 
-					(if (< y 0) (return nil))
+					(if (< y 0) 
+						(return nil))
 					(dotimes (x width)
 						(setf color (get-image-color image x y))
 						(print-color color file)

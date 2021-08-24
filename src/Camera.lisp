@@ -14,6 +14,6 @@
   (make-instance 'Ray
 		 :origine (camera-origin camera)
 		 :direction (v- (v+ (v+ (camera-lower-left-corner camera)
-					(v* u (camera-horizontal camera)))
-				    (v* v (camera-vertical camera)))
-				(camera-origin camera))))
+								(v* u (camera-horizontal camera)))
+				    		(v* v (camera-vertical camera)))
+						(camera-origin camera))))

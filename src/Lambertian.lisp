@@ -18,8 +18,9 @@
 		   			(random-in-unit-sphere))))
 
 		(setf (ray-origin scattered) (hit-recode-point rec))
-		(setf (ray-direction scattered) (v- target
-											(hit-recode-point rec)))
+		(setf (ray-direction scattered) 
+				(v- target
+					(hit-recode-point rec)))
 		;; (mapcar #'(lambda (x) (format destination "~D " x))  (ray-direction scattered))
     	(setf (aref attenuation 0) (aref (lambertian-albedo lambertian) 0))
 		(setf (aref attenuation 1) (aref (lambertian-albedo lambertian) 1))
