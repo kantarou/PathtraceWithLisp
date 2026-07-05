@@ -1,5 +1,3 @@
-(load "src/Ray.fasl")
-
 (defclass Camera ()
   ((origin     :accessor camera-origin
 	       :initform #(0 0 0))

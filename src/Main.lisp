@@ -1,13 +1,3 @@
-(load "src/Image.fasl")
-(load "src/Vector3D.fasl")
-(load "src/Ray.fasl")
-(load "src/Hitable.fasl")
-(load "src/HitableList.fasl")
-(load "src/Sphere.fasl")
-(load "src/Material.fasl")
-(load "src/Lambertian.fasl")
-(load "src/Camera.fasl")
-
 (defmethod get-color ((ray Ray)
 		      (world HitableList)
 			  depth)

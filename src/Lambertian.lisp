@@ -1,6 +1,3 @@
-;; (load "src/Material.fasl")
-;; (load "src/Ray.fasl")
-
 (defclass Lambertian (Material)
   ((albedo
     :initarg :albedo

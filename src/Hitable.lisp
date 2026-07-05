@@ -1,5 +1,3 @@
-;; (load "src/Ray.fasl")
-
 (defclass HitRecord ()
   ((trace
     :accessor hit-recode-trace

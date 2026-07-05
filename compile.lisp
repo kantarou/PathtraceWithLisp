@@ -1,32 +1,17 @@
-(defvar compile-files
-  '("Vector3D.lisp"
-    "Matrix.lisp"
-    "Ray.lisp"
-    "Image.lisp"
-    "Hitable.lisp"
-    "HitableList.lisp"
-    "Material.lisp"
-    "Lambertian.lisp"
-    "Sphere.lisp"
-    "Camera.lisp"
-    "Main.lisp"))
+(require :asdf)
+
+;; Register this project's directory with ASDF so it can find pathtrace.asd,
+;; then let ASDF resolve compilation/load order from the :depends-on graph
+;; declared there, instead of a hand-maintained file list.
+(let ((project-root (make-pathname :name nil :type nil
+                                    :defaults (or *load-truename*
+                                                  *default-pathname-defaults*))))
+  (push project-root asdf:*central-registry*))
 
 (declaim (optimize (speed 3) (debug 0) (safety 0)))
 
-;; compile to exe file
-(setf compile-files
-  (mapcar (lambda (x) (concatenate 'string "src/" x)) compile-files))
+(asdf:load-system "pathtrace")
 
-(print compile-files)
-
-(mapcar #'compile-file compile-files)
-(mapcar #'load compile-files)
 (sb-ext:save-lisp-and-die "pathtrace-lisp"
                           :toplevel #'main
                           :executable t)
-
-#|
-Hitable.lisp
-Sphere.lisp
-compile.lisp
-|#

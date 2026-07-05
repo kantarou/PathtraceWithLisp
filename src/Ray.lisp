@@ -1,7 +1,3 @@
-(load "src/Vector3D.fasl")
-(load "src/Image.fasl")
-
-
 (defclass Ray ()
   ((A	:accessor ray-origin
 		:initarg  :origine

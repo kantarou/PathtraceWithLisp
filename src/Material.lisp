@@ -1,5 +1,3 @@
-(load "src/Vector3D.fasl")
-
 (defmacro while (test &body body)
 	`(do ()
 		 ((not ,test))

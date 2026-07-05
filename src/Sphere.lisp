@@ -1,5 +1,3 @@
-(load "src/Hitable.fasl")
-
 (defclass Sphere (Hitable)
   ((center :accessor sphere-center
 	   :initarg :center)

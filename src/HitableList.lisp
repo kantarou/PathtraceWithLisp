@@ -1,5 +1,3 @@
-(load "src/Hitable.fasl")
-
 (defclass HitableList (Hitable)
   ((list-size
     :accessor hitable-list-list-size
