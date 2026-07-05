@@ -7,7 +7,7 @@
 	(hit ray world rec 0.001 sb-ext:double-float-positive-infinity)
       (if hit-result
 		(let ((scattered (make-instance 'Ray))
-			  (attenuation #(0 0 0)))
+			  (attenuation (vector 0 0 0)))
 			(if (and (< depth 25)
 				(scatter (hit-recode-material-pointer rec) ray rec attenuation scattered))
 
